@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>CallBack</title>
+<script src="jquery-ui-1.11.4/jquery.js"></script>
+<script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+<script>
+         var cname=prompt("Introdueix un valor");
+var noms="   name1=Joan;  name2=Tomeu;  name3=Toni;   name4=Sebastià;  name5=Perico;  name6=Pep; name7=Tolo;  name8=Lluis;  name9=Alex;   name10=Pedro;  name11=Miquel;  name12=Tofol";
+//posa el teu codi
+var patt = new RegExp("\\b"+cname+"[=]\\w+","gm");
+
+        var n= noms.match(patt);
+		//document.write(n+"<br>");
+		 
+	   var res = n[0].replace(/\w+[=]/g, " ");
+
+		document.write(res);
+    
+
+  </script>
+      <style>
+         div { overflow:left;margin:2px;padding:3px;}
+         img {width: 155px; height:150px;}    
+         .cb {width: 150px; height:30px;}
+      </style>
+   </head>
+   <body>  
+     
+         
+   </body>
+</html>

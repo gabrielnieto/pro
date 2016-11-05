@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>CallBack</title>
+<script src="jquery-ui-1.11.4/jquery.js"></script>
+<script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+<script>
+         $(document).ready(function(){
+         	
+         	// Posa el teu codi---------------------
+       function par ()
+           {
+		   $("div:even").fadeOut(3000).fadeIn(3000,function(){ $(this).remove(); }); 
+               
+//selecciona els divs parells i fa un .fadeOut(3000) i després un fadeIn(3000),després s'eliminin
+//els divs parells.
+            }
+			
+			/*function par ()
+           {
+		   $("div:even").fadeOut(3000,function(){     
+                  $(this).fadeIn(3000).remove(); 
+               });
+//selecciona els divs parells i fa un .fadeOut(3000) i després un fadeIn(3000),després s'eliminin
+//els divs parells.
+            }*/
+			
+      function imparell ()
+           {
+		   $("div:odd").fadeOut(3000).fadeIn(3000,function(){ $(this).remove(); });   
+                 
+              
+//selecciona els divs imparells i fa un .fadeOut(3000) i després un fadeIn(3000),després s'eliminin
+//els divs imparells.
+            }
+
+			 
+            // ---------------------
+            /* Cream l'objeto Callback  */
+
+			
+         	var objCall = $.Callbacks();
+			
+		   // Ejecutar les funcions en el Callback
+			$("#btnExecutar").click(function(){
+               objCall.fire();
+            });  
+			
+			
+			$("#btnAfegirpar").click(function(){
+               objCall.add(par);
+			   $("#resultat").append("afegida funcio parell <br>");
+            }); 
+			$("#btnAfegirimpar").click(function(){
+               objCall.add(imparell);
+			   $("#resultat").append("afegida funcio imparell <br>");
+
+            }); 
+			$("#btnEliminarpar").click(function(){
+               objCall.remove(par);
+			   $("#resultat").append("eliminada funcio parell <br>");
+
+            }); 
+			$("#btnEliminaimpar").click(function(){
+               objCall.remove(imparell);
+			   $("#resultat").append("eliminada funcio imparell  <br>");
+
+            }); 
+			
+			
+			
+         	
+            $("#b_subir").click(function(){
+               var o=$("#imagenes tr").first().clone();
+               $("#imagenes tr").first().fadeOut(3000,function(){     
+                  $("#imagenes tr").first().remove();
+                  o.appendTo('#imagenes');
+                  $("#res").html("Subo una imagen"); 
+               });
+            });  
+                 
+                 
+              $("#b_bajar").click(function(){
+               var o=$("#imagenes tr").last().clone();
+               $("#imagenes tr").last().fadeOut(3000,function(){ 
+                  $("#imagenes tr").last().remove();
+                  o.prependTo('#imagenes');
+                  $("#res").html("Bajo una imagen"); 
+               });
+            });      
+                
+                                
+                                
+            $("#b_reset").click(function(){location.reload();});
+         });
+      </script>
+      <style>
+         div { overflow:left;margin:2px;padding:3px;}
+         img {width: 155px; height:150px;}    
+         .cb {width: 150px; height:30px;}
+      </style>
+   </head>
+   <body>  
+      <center>
+         <table border="0" style="border-color:#00BFFF"> 
+            <tr>
+               <td><input type="button" value="Subir" id="b_subir" class="cb"/></td>
+               <td><input type="button" value="Bajar" id="b_bajar" class="cb"/></td>            
+                <td><input type="button" value="Afegir funció Parell" id="btnAfegirpar" class="cb"/></td>
+               <td><input type="button" value="Afegir funció Imparell" id="btnAfegirimpar" class="cb"/></td>
+               <td><input type="button" value="Eliminar funció Parell" id="btnEliminarpar" class="cb"/></td>            
+               <td><input type="button" value="Eliminar funció Imparell" id="btnEliminaimpar" class="cb"/></td>
+               <td><input type="button" value="Executar CallBack" id="btnExecutar" class="cb"/></td>
+               <td><input type="button" value="Reset" id="b_reset" class="cb"/></td>
+            </tr>
+            <tr>
+                       
+            </tr>
+          </table>  
+          <table border=0 id="imagenes">               
+            <tr><td><div><img src="Chrysanthemum.jpg"></div></td></tr>   
+            <tr><td><div><img src="Hydrangeas.jpg"></div></td></tr>       
+            <tr><td><div><img src="Tulips.jpg"></div></td></tr>
+            <tr><td><div><img src="Koala.jpg"></div></td></tr>       
+            <tr><td><div><img src="Desert.jpg"></div></td></tr>
+              <tr><td><div id="resultat"></div></td></tr> 
+         </table>
+         
+         <table border=0 id="resultat">               
+            <tr></tr> 
+         </table>
+         
+         
+      </center>
+   </body>
+</html>
